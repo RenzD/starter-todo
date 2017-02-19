@@ -7,3 +7,4 @@ New Features
 1. Added change log (Andrei)
 2. Finished part 1 (Andrei)
 3. Finished part 2 (Andrei)
+4. Finished part 3 (Renz)

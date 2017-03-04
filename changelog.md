@@ -8,4 +8,6 @@ New Features
 2. Finished part 1 (Andrei)
 3. Finished part 2 (Andrei)
 4. Finished part 3 (Renz)
-5. Finished part 4 (Renz)
+5. Finished part 4  - Lab5 (Renz)
+
+6. Finished part 4 - Lab6 (Andrei)

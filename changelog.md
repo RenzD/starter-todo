@@ -12,3 +12,4 @@ New Features
 
 6. Finished part 4 (Andrei)
 7. Finished part 6 (Renz)
+8. Finished part 7 (Renz)

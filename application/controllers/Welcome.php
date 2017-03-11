@@ -39,9 +39,12 @@ class Welcome extends Application
 
 		$this->data['display_tasks'] = $display_tasks;
 
-
 		$this->data['pagebody'] = 'homepage';
 		$this->render(); 
+	}
+
+	function render(){
+
 	}
 
 }

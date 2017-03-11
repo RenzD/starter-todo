@@ -6,7 +6,7 @@ class Mtce extends Application {
 
 		private $items_per_page = 10;
 
-        public function index()
+    public function index()
 		{
 			//$tasks = $this->tasks->all(); // get all the tasks
 			//$this->show_page($tasks);

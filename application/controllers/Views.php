@@ -9,11 +9,22 @@ class Views extends Application
         $tasks = $this->tasks->all();   // get all the tasks
         $this->data['content'] = 'Ok'; // so we don't need pagebody
 		
-		$this->data['leftside'] = $this->makePrioritizedPanel($tasks);
-		$this->data['rightside'] = $this->makeCategorizedPanel($tasks);
+		    $this->data['leftside'] = $this->makePrioritizedPanel($tasks);
+		    $this->data['rightside'] = $this->makeCategorizedPanel($tasks);
 
         $this->render('template_secondary'); 
     }
+
+  // return -1, 0, or 1 of $a's priority is higher, equal to, or lower than $b's
+  function orderByPriority($a, $b)
+  {
+    if ($a->priority > $b->priority)
+      return -1;
+    elseif ($a->priority < $b->priority)
+      return 1;
+    else
+      return 0;
+  }
 	
 	function makePrioritizedPanel($tasks) 
 	{
@@ -25,9 +36,8 @@ class Views extends Application
 		}
 		$parms = ['display_tasks' => []];
 		
-		
 		// order them by priority
-		usort($undone, "orderByPriority");
+		usort($undone, array('Views', "orderByPriority"));
 		// substitute the priority name
 		foreach ($undone as $task)
 			$task->priority = $this->priorities->get($task->priority)->name;
@@ -40,32 +50,27 @@ class Views extends Application
 		return $this->parser->parse('by_priority', $parms, true);
 	}
 
+  /*
 	function makeCategorizedPanel($tasks)
 	{
 		$parms = ['display_tasks' => $this->tasks->getCategorizedTasks()];
 		return $this->parser->parse('by_category', $parms, true);
 	}
-}
-	// return -1, 0, or 1 of $a's priority is higher, equal to, or lower than $b's
-	function orderByPriority($a, $b)
-	{
-		if ($a->priority > $b->priority)
-			return -1;
-		elseif ($a->priority < $b->priority)
-			return 1;
-		else
-			return 0;
-	}
-	function makeCategorizedPanel($tasks) {
-        foreach ($tasks as $task)
+  */
+ 
+  function makeCategorizedPanel($tasks) {
+    foreach ($tasks as $task)
+    {
+        if ($task->status != 2)
         {
-            if ($task->status != 2)
-            {
-                $undone[] = $task;
-            }
+            $undone[] = $task;
         }
-        // order them by priority
-        //usort($undone, "orderByCategory");
-        $parms = ['display_tasks' => []];
-        return $this->parser->parse('by_category',$parms,true);
     }
+    // order them by priority
+    //usort($undone, "orderByCategory");
+    $parms = ['display_tasks' => []];
+    return $this->parser->parse('by_category',$parms,true);
+  } 
+
+}
+

@@ -43,8 +43,4 @@ class Welcome extends Application
 		$this->render(); 
 	}
 
-	function render(){
-
-	}
-
 }

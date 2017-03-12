@@ -25,6 +25,9 @@ class Application extends CI_Controller
 		$this->data = array ();
 		$this->data['pagetitle'] = 'Team 39';
 		$this->data['ci_version'] = (ENVIRONMENT === 'development') ? 'CodeIgniter Version <strong>'.CI_VERSION.'</strong>' : '';
+
+    $this->data['alerts'] = '';
+    $this->error_free = TRUE;
 	}
 
 	/**
@@ -44,9 +47,6 @@ class Application extends CI_Controller
     // THE ABOVE FOUR LINES GET INSERTED
 
     $this->parser->parse($template, $this->data);
-
-    $this->data['alerts'] = '';
-    $this->error_free = TRUE;
 	}
 
 	// Add an alert to the rendered page
